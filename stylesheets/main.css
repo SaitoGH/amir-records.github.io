@@ -2,16 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;800&display=swap');
 @import url('./shortcut.css');
-@font-face {
-    font-family: 'Museo';
-    src: local('Museo 900'), local('Museo-900'),
-        url('./fonts/Museo-900.woff2') format('woff2'),
-        url('./fonts/Museo-900.woff') format('woff'),
-        url('./fonts/Museo-900.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-  }
-
 a {
     color: white;
     text-decoration: none;

@@ -1,0 +1,221 @@
+@import url('./shortcut.css');
+body {
+    font-family: monospace;
+    background-color: white;
+    margin: 0;
+}
+
+a {
+    color: black;
+    background-image: linear-gradient(black, black);
+    background-size: 0% 0.1rem;
+    background-position-y: 100%;
+    background-position-x: 0%;
+    background-repeat: no-repeat;
+    transition: background-size 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+    text-decoration: none;
+}
+a:hover {
+    background-size: 100% 0.1rem;
+    transition: background-size 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.header-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+.icon {
+    color: white;
+    background-image: url("../images/jp/PXL_20230910_051911047.jpg");
+    height: 50vh;
+    background-repeat: no-repeat;
+    background-position: 0% 50%;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.icon:last-child {
+    display: block;
+    mask-size: cover;
+    mask-image: url('../extra/bar.svg');
+    background-attachment: fixed;
+    mask-position: top;
+}
+.header-wrapper h1 {
+    position: absolute;
+    color: blanchedalmond;
+    top: 10%;
+    font-size: large;
+}
+.table-wrapper {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1;
+    position: relative;
+    bottom: 20vh;
+}
+@media screen and (max-width:480px) {
+    .table-wrapper{
+       overflow-x: auto;
+    }
+}
+.table-header {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.table-header input, select {
+    border-radius: 0.5em;
+    height: 50%;
+    border-style: solid;
+    background-color: white;
+    width: 100%;
+
+}
+
+.head-element  {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    flex-direction: column;
+}
+.head-element label {
+    align-self: center;
+    position: relative;
+    user-select: none;
+    z-index: 0;
+    opacity: 0;
+}
+.head-element span {
+    width: 10px;
+    height: 40px;
+    border-radius: 1rem;
+    filter: brightness(5);
+    transform-origin: center;
+    transform: rotateZ(180deg);
+    transition: transform 0.5s ease-in-out;
+    position: relative;
+}
+.head-element p {
+    position: relative;
+    user-select: none;
+}
+table {
+    max-width: 100%;
+    background-color: white;
+    filter: drop-shadow(2px 2px 2px lavender);
+    color: black;
+    table-layout: fixed;
+    &:a {
+        color: crimson;
+        text-decoration: none;
+    }
+}
+table tr {
+    width: 100%;
+    display: inline-flex;
+    &:first-child th{
+        border-right: 0;
+        background-color: lavender;
+        transition: padding 0.5s ease;
+        color: black;
+        &:hover {
+            padding: 2rem;
+        }
+    }
+
+}
+
+table tr:not(:first-child) th:nth-child(3) {
+    border-right: 2px solid black;
+}
+table tr:not(:first-child) th:nth-child(3)[type="Online"] {
+    border-right: 2px solid crimson;
+}
+table tr:not(:first-child) th:nth-child(3)[type="Physical"] {
+    border-right: 2px solid greenyellow;
+}
+table th {
+    padding: 0.5vh;
+    background-color: white;
+    width: 100%;
+    word-wrap: break-word;
+    overflow: hidden;
+    margin: 0.2rem;
+    filter: drop-shadow(1px 1px 1px lavender);
+}
+
+
+table tbody {
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 60vh;
+    scrollbar-width: thin;
+}
+.table-footer {
+    display: inline-flex;
+    justify-content: center;
+}
+.table-footer p {
+    margin: 0;
+    user-select: none;
+    background-color: lavender;
+    color: black;
+    padding: 0.5rem;
+    &:hover {
+        filter: drop-shadow(0px 2px 1px black);
+    }
+    transition: filter 0.5s ease;
+    
+}
+.about-section {
+    font-size: 1rem;
+    color: whitesmoke;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: black;
+    padding: 2rem;
+   
+}
+.about-section a {
+    color: white;
+    background-image: linear-gradient(white, white);
+}
+.about-section ul {
+    list-style-type: none;
+}
+
+.about-section li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.about-section #tag {
+    position: relative;
+    margin: 2rem;
+    width: -moz-available;
+    width: -webkit-fill-available;
+    border-top: 1px solid;
+    font-weight: bold;
+    padding: 0.5rem;
+}
+.about-section img {
+    position: relative;
+    width: auto;
+    height: max(100px, 200px);
+    user-select: none;
+}
+
+.anim-top{
+    position:relative;
+    animation: animatetop 0.6s;
+}
+@keyframes animatetop{
+    from{
+        top:100px;opacity:0
+    } to{
+        top:0;opacity:1
+    }
+}
