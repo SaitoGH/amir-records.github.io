@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="/stylesheets/extra.css">
+    <title>Amir Records</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+    <script src="https://unpkg.com/vue@3.4"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<div class="shortcut-bar-wrapper" style="color:white;">
+    <label id="s-bar-label">S A I T O.</label>
+    <ul id="shortcut-list">
+        <li style="--list:1"><span><a style='text-decoration: none; color:inherit;' href='/'>home</a></span></li>
+        <li style="--list:2"><a style='text-decoration: none;color:inherit;'href='/extra'>extra</a></li>
+    </ul>
+</div>
+<body>
+<div class="header-wrapper">
+    <h1>malaysia public anime store, cosplays, service datasheet </h1>  
+    <span class="icon"></span>
+    <span class="icon"></span>
+    
+   
+</div>
+
+<div class="table-wrapper">
+    <div class="table-header"> 
+        <div class="head-element">
+            <label for="nameInput">store name?</label>
+            <input type="text" v-model="message" id="head-input" placeholder="Name"/>
+        </div>
+        <div class="head-element">
+            <div style="display: flex;flex-direction: row; justify-content: center;justify-content: space-evenly;width: 200px;"> 
+                <p>Online</p>
+                <span style="background-color:black;"></span>
+                <p>Physical</p>
+            </div>
+        </div>
+        <div class="head-element">
+             <label for="stateInput">state?</label>
+            <select name="state" id="head-input" v-model="stateInput" data-dropup-auto="false">
+                <option value="">Any</option>
+                <option value="Kuala Lumpur">W.P Kuala Lumpur</option>
+                <option value="Selangor">Selangor</option>
+                <option value="Johor">Johor</option>
+                <option value="Kedah">Kedah</option>
+                <option value="Kelantan">Kelantan</option>
+                <option value="Melaka">Melaka</option>
+                <option value="Negeri Sembilan">Negeri Sembilan</option>
+                <option value="Pahang">Pahang</option>
+                <option value="Penang">Penang</option>
+                <option value="Perak">Perak</option>
+                <option value="Sabah">Sabah</option>
+                <option value="Sarawak">Sarawak</option>
+                <option value="Terengganu">Terengganu</option>
+            </select>
+        </div>
+        
+    </div>
+    <table id="table-wrapper">
+    <tbody>
+        <tr>
+            <th v-for="(head) in (headers)"> {{ head }}</th>
+        </tr>
+        <template  v-for="(v) in (wbCurSheet)">
+            <tr v-if="v['Store Name'].toLowerCase().includes(message.toLowerCase()) && v['State/Negeri'].includes(stateInput) && v['Platform'].includes(platOpt)">
+                <template  v-for="(val, i) in v">
+                    <th v-if="i=='Website Link' || i=='Location(If any)'"> 
+                            <pre v-for="e in (val.split('\n'))" ><a v-if="e != ''" target="_blank" :href=`${e}`>{{ e }}<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
+                                </svg>↗</a></pre>
+                    </th>
+                    <th v-else-if="i=='State/Negeri'"> 
+                            <pre v-for="e in (val.split('\n'))" >{{ e }}</pre>
+                    </th>
+                     <th :type="`${val}`" v-else-if="i=='Platform'">
+                        {{ val }}
+                    </th>
+                    <th v-else><!-- Else it will just placed down normally -->
+                        {{ val }}
+                    </th>
+                </template>
+            </tr>
+        </template>
+    </tbody>
+    </table>
+    <div class="table-footer">
+        <p v-for=" sn in (sheet_name)"> {{ sn }}</p>
+    </div>
+</div>
+<footer class="about-section">
+    <img src="/images/logo/logo_w.png"></img>
+    <ul>
+        <label>About</label>
+        <li><a href="#middle-container">about me</a></li>
+        <li><a href="#middle-container">studies</a></li>
+        <li><a href="#tertiary-container">portfolio (projects)</a></li>
+    </ul>
+
+    <ul>
+        <label>Get in touch</label>
+        <li>
+            <u><label>General Inquries</label></u><br><br>
+            <a href = "mailto:amirraifedu@gmail.com?subject = Feedback&body = Message">amirraifedu@gmail.com (gmail)<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
+            </svg></a>
+        </li>
+        <li>
+            <u><label>Personal Inquries</label></u><br><br>
+            <a target="_blank" href = "https://discord.com/">dreamending (discord)<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
+            </svg></a>
+        </li>
+        <li>
+            <a target="_blank" href = "https://github.com/SaitoGH">SaitoGH (github)<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
+            </svg></a>
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <u><label>Privacy & Policy</label></u><br><br>
+            <a target="_blank" href = "https://www.termsfeed.com/live/59d9d078-7ac0-46cf-9ff6-5026a9f1a92c">Amir Records Privacy Policy <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-paperclip" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0z"/>
+            </svg></a>
+        </li>
+    </ul>
+    <label id="tag">@AmirRecords 2022</label>
+    <label style="position: relative; opacity: 0.2; user-select: none;">you would not believe it but this website is responsive ᗜˬᗜ</label>
+
+</footer>  
+</body>
+<script type="module" src="/scripts/extra.js"></script> 
+<script type="module" src="/scripts/main_extra.js"></script> 
+</html>
