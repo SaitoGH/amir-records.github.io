@@ -147,6 +147,33 @@ body {
     width: 100%;
     height: 100%;
 }
+.jomjakan-container {
+    background-color: orange;
+    position: relative;
+    display: flex;
+    height: 50vh;
+    overflow: hidden;
+    img {
+        margin: auto;
+        height: 30%;
+        filter: blur(100px);
+    }
+    img.show {
+        transform:rotateZ(360deg);
+        filter: blur(0px);
+        transition: cubic-bezier(0.165, 0.84, 0.44, 1) 1.8s;
+    }
+    img:hover {
+        transform: scale(1.2);
+    }
+    p {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
 .anim-right{
     animation: animright 2s
 }

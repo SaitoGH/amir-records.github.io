@@ -18,7 +18,6 @@ $(document).ready(function(){
   })
   char_elm.forEach(ch =>{ //every data-char elements
     observer.observe(ch);
-    console.log(ch);
   })
 
 })
@@ -84,6 +83,34 @@ function trnfTerti(entry){
   img.toggle("anim-right", entry.isIntersecting);
   
 }
+hasShowed = false
+function spinJJCont(entry) {
+  if (entry.isIntersecting == 1 && hasShowed == false){
+      const svg = entry.target.querySelector('img');
+      const RAND_CHAR = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()-_+<>÷\?/'.split('')
+      var text_char = $('#rand_char')
+      let text_holder = text_char.text().split('')
+      let text_original = text_char.text().split('')
+      const text_length = text_char.text().length
+      let currentLetter = -1
+      let id = setInterval(randomiseLetters, 50)//This must be bigger than the increment
+
+      function incrementletter() {
+        text_holder[currentLetter] = text_original[currentLetter]
+        text_char.text(text_holder.join(""))
+      }
+      function randomiseLetters() {
+        currentLetter = currentLetter + 1
+        for (let k=currentLetter; k < text_length; k++){
+          text_holder[k] = RAND_CHAR[Math.floor(Math.random(0, RAND_CHAR.length) * RAND_CHAR.length)]
+        }
+      }
+      setInterval(incrementletter, 35)
+      $(svg).addClass("show");
+      hasShowed = true;
+  }
+}
+
 
 function popUpIcon(){
   let imgObj = document.querySelectorAll("#icon-wrapper");
@@ -97,3 +124,4 @@ function popUpIcon(){
     })
   })
 }
+
